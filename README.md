@@ -13,7 +13,7 @@ We still try to grasp some of the concepts
 
 It will improve over time ;-)
 
-If you have any improvements tell us via issues or ...
+If you have any improvements tell us via issues or ... <br>
 Thanks
 
 
