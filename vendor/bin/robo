@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+SRC_DIR="`pwd`"
+cd "`dirname "$0"`"
+cd "../codegyre/robo"
+BIN_TARGET="`pwd`/robo"
+cd "$SRC_DIR"
+"$BIN_TARGET" "$@"
