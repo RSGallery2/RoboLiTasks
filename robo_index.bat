@@ -1,0 +1,1 @@
+php .\vendor\codegyre\robo\robo Check4ExistingIndexHtmlFile "..\RSGallery2_Module_ImageWall" %*
