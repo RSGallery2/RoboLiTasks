@@ -1,0 +1,9 @@
+Possible tasks
+
+* Unix endlines on components, moduoles and ...
+* Joomla coding standards ...
+* Indenting tabs
+* check line length
+* 
+
+

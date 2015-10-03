@@ -6,6 +6,8 @@
  */
 use Robo\Common\TaskIO;
   
+require_once 'vendor/autoload.php';
+  
 // use Check4ExistingIndexHtmlFile;
  
 class RoboFile extends \Robo\Tasks
@@ -57,7 +59,16 @@ class RoboFile extends \Robo\Tasks
 		$this->TaskCheck4ExistingIndexHtmlFile ($Path);	
 	}
 	
-	
+	public function CheckCodecept ()	
+	{
+		$this->taskCodecept()
+			->suite('acceptance')
+			->arg('.\\TasksCodecept\\tests\\acceptance\\WelcomeCept')
+			->arg('--steps')
+			->arg('--debug')
+			->run()
+			->stopOnFail();		
+	}
 	
 	
 	/**
