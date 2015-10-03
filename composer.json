@@ -1,0 +1,8 @@
+{
+    "require-dev": {
+        "codegyre/robo": "*"
+    },
+    "require": {
+        "codeception/codeception": "*"
+    }
+}
