@@ -17,7 +17,9 @@ $I->see('Test_Joomla3x - Administration - Control Panel');
 $I->amOnPage('/administrator/index.php?option=com_installer');
 $I->seeInTitle('Test_Joomla3x - Administration - Extensions: Install');
 
-$I->seeLink('Control Panel');
+$I->seeLink('Control Panel', 'index.php');
+
+$I->pauseExecution();
 
 //$I->seeInTitle('Test_Joomla3x - Administration');
 
@@ -35,6 +37,7 @@ $I->seeLink('Control Panel');
 //$I->click(['Install from Directory'], '#directory');
 $I->submitForm('#adminForm', [], 'submitbutton3');
 
+$I->pauseExecution();
 $I->seeElement('h4', 'message');
 
 //// $I->see('Install from Directory');
