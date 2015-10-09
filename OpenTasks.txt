@@ -1,9 +1,14 @@
 Possible tasks
 
-* Unix endlines on components, moduoles and ...
+* Unix endlines on components, modules and ...
 * Joomla coding standards ...
 * Indenting tabs
 * check line length
-* 
+* Documentation of components
+* Slideshows of web movements
+* .
+* .
+* .
+* .
 
 
