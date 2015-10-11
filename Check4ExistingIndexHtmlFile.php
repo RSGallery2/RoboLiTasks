@@ -14,7 +14,7 @@ trait Check4ExistingIndexHtmlFile
 {
     function taskCheck4ExistingIndexHtmlFile($ProjectPath)
     {
-        return new CompileAssetsTask($ProjectPath);
+        return new Check4ExistingIndexHtmlFile($ProjectPath);
     }
 }
 }

@@ -8,11 +8,11 @@ use Robo\Common\TaskIO;
   
 require_once 'vendor/autoload.php';
   
+// use Check4ExistingIndexHtmlFile;
+ 
 class RoboFile extends \Robo\Tasks
 //class RoboFile extends \Robo\Task\BaseTask
 {
-	use Check4ExistingIndexHtmlFile;
- 
     // define public methods as commands
     function hello($world)
     {
@@ -102,7 +102,7 @@ class RoboFile extends \Robo\Tasks
 			return;
 		}
 		
-		$this->TaskCheck4ExistingIndexHtmlFile (PrjPath);	
+		// $this->Check4ExistingIndexHtmlFile (PrjPath);	
 		
         $this->say("\t\* Clean destination  " . $PrjPath);
 		$this->_cleanDir($DstPath);	

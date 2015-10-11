@@ -1,0 +1,55 @@
+
+
+
+
+
+The docs say to run php codecept.phar run to execute my test, but I believe this is an error.
+
+When I run php vendor/codeception/codeception/package/codecept.phar run acceptance or vendor/bin/codecept run acceptance EditUserCept to run my EditUserCept.php test all I see is:
+
+run [suite] [test]
+
+Are the docs incorrect?
+
+----------------------------
+
+
+The docs are correct. But I use the following:
+Examples
+
+    To execute FooCest.php found in the directory path tests/unit/Model
+    vendor/bin/codecept --steps --debug --verbose  run unit Model/FooCest.php
+    To execute all the tests labeled with the group current
+    vendor/bin/codecept --steps --debug --verbose  run -g current
+
+I would change to using vendor/bin/codecept instead of vendor/codeception/codeception/package/codecept.phar if you are running Linux or MacOS.
+
+----------------------------------------------------------------
+here is the solution:
+
+codecept run tests/acceptance/VisitorCest.php:myTestName
+
+or another version from the comments:
+
+codecept run {suite-name} {file-name}.php:{function-name}
+
+** notice the space between the suite-name and the file-name
+
+---------------------------------------------------
+
+ 0
+down vote
+	
+
+You can use submitForm() to submit hidden form values:
+
+$I->submitForm('#id_of_form', array(
+    'hidden_field_name' => 'value_to_submit'
+));
+
+But I think you're right, you can't use fillField() or similar methods.
+
+
+
+
+
