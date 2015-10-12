@@ -14,7 +14,7 @@ trait Check4ExistingIndexHtmlFile
 {
     function taskCheck4ExistingIndexHtmlFile($ProjectPath)
     {
-        return new Check4ExistingIndexHtmlFile($ProjectPath);
+        return new Check4ExistingIndexHtmlFileTask($ProjectPath);
     }
 }
 }
@@ -24,7 +24,8 @@ trait Check4ExistingIndexHtmlFile
  * Class SendCodeceptionOutputToSlack
  * @package rsgallery2\robo
  */ 
-class Check4ExistingIndexHtmlFile extends BaseTask implements TaskInterface
+// class Check4ExistingIndexHtmlFileTask extends BaseTask implements TaskInterface
+class Check4ExistingIndexHtmlFileTask implements Robo\Contract\TaskInterface
 {
 	protected $ProjectPath = null;
 
