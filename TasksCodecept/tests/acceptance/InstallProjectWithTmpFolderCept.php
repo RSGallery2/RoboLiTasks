@@ -11,7 +11,11 @@ $I->seeInTitle('Test_Joomla3x - Administration');
 $I->fillField("#mod-login-username", 'TestAdmin');
 $I->fillField("#mod-login-password", 'PassAdmin');
 $I->click('Log in');
-$I->see('Test_Joomla3x - Administration - Control Panel');
+$I->see('Control Panel');
+
+$I->click('Extensions');
+$I->click('Manage');
+
 
 
 $I->amOnPage('/administrator/index.php?option=com_installer');
