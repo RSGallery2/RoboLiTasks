@@ -106,10 +106,9 @@ class RoboFile extends \Robo\Tasks
 	{
         $this->say("DevInstallProjectOverTempZip not finished");
 		
-		$PrjPath ='..\\' . $prjName;
+		$PrjPath = realpath('..\\' . $prjName);
 		$DstPath = '\\xampp\\htdocs\\' .  $XamppFolderPart . '\\tmp';
 		
-        $this->say("PrjPath= " . $PrjPath);
         $this->say("\t\t\$PrjPath= " . $PrjPath);
         $this->say("\t\t\$DstPath= " . $DstPath);
 
@@ -130,19 +129,17 @@ class RoboFile extends \Robo\Tasks
 			return;
 		}
 		
-		$this->TaskCheck4ExistingIndexHtmlFile (PrjPath);	
+		//$this->TaskCheck4ExistingIndexHtmlFile ($PrjPath);	
+		$this->Check4ExistingIndexHtmlFile ($PrjPath);	
 		
         $this->say("\t\* Clean destination  " . $PrjPath);
 		$this->_cleanDir($DstPath);	
 		
-		// as shortcut
         $this->say("\t\* Copy to destination  " . $PrjPath);
 		$this->_copyDir($PrjPath, $DstPath);	
 
-
-		// Missing auto install with Codeception
-		
-		
+        $this->say("\t\* Install with codeception  " . $prjName);
+		$this->CodeceptInstallProjectWithTmpFolder ();
 	}
 	
 	/**	
@@ -197,15 +194,11 @@ class RoboFile extends \Robo\Tasks
         $files = Finder::create()->files()->name('*.php')->in('../'.$CompName);
         $docs = [];
         foreach ($files as $file) {
-;
+			$Test = $File;
 		
 		}
 		
-		$this->taskGenerateMarkdownDoc('.\MdDocs\$CompName.'.md')
-
-		
-		
-		
+		$this->taskGenerateMarkdownDoc('.\\MdDocs\\'.$CompName.'.md');
 		
 	}
 	
@@ -220,7 +213,7 @@ class RoboFile extends \Robo\Tasks
 	* Will recursively check every sub folder
 	* command line: check4:existing-index-html-file
 	* @param string $path start folder path	
-	* /
+	*/
 	public function Check4ExistingIndexHtmlFile ($path='..\\', $leaveOutDir=array('.git', '', '', '', '', '', '', ''))
 	{
         // $this->say("Check4ExistingIndexHtmlFile: '$path'");
