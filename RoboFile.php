@@ -189,6 +189,29 @@ class RoboFile extends \Robo\Tasks
 		$this->taskGenerateMarkdownDoc($prjName . 'Doc.md');
 	}
 	
+	/**
+		Try doc
+	*/
+	public function docComponent ($CompName='RSGallery2_Module_LatestImages')
+	{
+        $files = Finder::create()->files()->name('*.php')->in('../'.$CompName);
+        $docs = [];
+        foreach ($files as $file) {
+;
+		
+		}
+		
+		$this->taskGenerateMarkdownDoc('.\MdDocs\$CompName.'.md')
+
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 	
 	
