@@ -4,20 +4,17 @@
 # Perform tests in browser using the WebDriver or PhpBrowser.
 # If you need both WebDriver and PHPBrowser tests - create a separate suite.
 
-    
-class_name: AcceptanceTester
+class_name: WebGuy
 modules:
     enabled:
-        - Webdriver
-#        - AcceptanceHelper
+        - WebDriver
+#        - WebHelper
+        - \Helper\Acceptance
     config:
-        - Webdriver:
-            url: http://localhost/joomla3x   
-            browser: firefox
-            window_size: 1920x1080
-            wait: 10            
-            capabilities:
-                unexpectedAlertBehaviour: 'accept'          
-            
-            
-            
+        PhpBrowser:
+            url: http://localhost/joomla3x
+        WebDriver:
+            url: http://localhost/joomla3x
+            browser: 'firefox'
+        
+        

@@ -11,9 +11,8 @@ settings:
     memory_limit: 1024M
 extensions:
     enabled:
-        - Webdriver
         - Codeception\Extension\RunFailed
-        - Codeception\Extension\Recorder 
+        - Codeception\Extension\Recorder
 modules:
     config:
         Db:
@@ -21,15 +20,8 @@ modules:
             user: ''
             password: ''
             dump: tests/_data/dump.sql
-        Webdriver:
-            url: 'http://localhost/joomla3x'
-            browser: firefox
-            window_size: 1920x1080
-            wait: 10            
-            capabilities:
-                unexpectedAlertBehaviour: 'accept'          
-        - Codeception\Extension\Recorder:
-            delete_successful: false 
+        Codeception\Extension\Recorder:
+            delete_successful: false
             
             
             
