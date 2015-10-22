@@ -1,7 +1,6 @@
 @echo off
 pushd ..
-php .\vendor\codegyre\robo\robo dev:create-all-project-zip %*
+php .\vendor\codegyre\robo\robo create:project-base-view component %*
 popd
-
 @REM Echo Press any key to continue
 @REM pause

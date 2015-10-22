@@ -1,0 +1,23 @@
+I am working on something similar, but on Windows. Right now I have installed Codeception as global using Composer:
+
+composer global require "codeception/codeception=2.0.*"
+composer global require "codeception/specify=*"
+composer global require "codeception/verify=*"
+
+This allows me to switch to a specific folder like yours "/Module1/Applications/" and then issue the commands directly, e.g.:
+
+a) set up the test directory:
+
+codecept bootstrap
+
+b) create the tests by:
+
+codecept generate:cept functional AccountType1Cept
+
+If you prefer, you can do it from the main directory, but you have first to tell Codeception the name, then use the "-c" option to indicate that you want to execute the command in the directory that follows, and then the target directory. In your case (using Linux) it would be:
+
+codecept.phar generate:cept functional AccountType1Cept -c ~/Module1/Applications 
+
+but for me it's too much typing, it's easier to just switch to the target folder and issue all the commands there :-)
+
+More information: http://codeception.com/docs/07-AdvancedUsage#Running-from-different-folders

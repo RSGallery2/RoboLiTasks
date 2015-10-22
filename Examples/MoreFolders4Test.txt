@@ -1,0 +1,18 @@
+I would recommend NOT to include the tests into your application business code, because they simply offer no functionality to you app. Tests should always be in their own scope.
+
+You find the default codeception structure confusing with a larger amounts of tests. I ran into the same problem, but for the solution you have to remember one thing: You're not bound to the structure:
+
+    acceptance
+    functional
+    unit
+
+You can create as many test suites as it suits your need (the defaults are only suggestions). Feel also free to mix unit and functional test in one suite. I ended up creating many small suites for the different cases i want to test:
+
+    suite1/
+        controllertest1.php
+        viewtest1.php
+    suite2/
+        controllertest2.php
+        viewtest2.php If this suites end up to small I would put the tests for 1 module of your application into 1 suite. Don't forget to name the testcases with expressive names. It make your life a lot easier.
+
+Simply create a new suite with ./codecept g:suite suite1 http://codeception.com/docs/reference/Commands#GenerateSuite

@@ -1,0 +1,10 @@
+wantTo('install component/module/plugin');
+amOnPage('/administrator/index.php?option=com_installer');
+fillField("#mod-login-username", 'TestAdmin');
+fillField("#mod-login-password", 'PassAdmin');
+click('Log in');
+see('Extension Manager: Install');
+seeLink('Install from Directory');
+click('Install from Directory');
+seeLink('Install from Directory');
+click('Install from Directory');

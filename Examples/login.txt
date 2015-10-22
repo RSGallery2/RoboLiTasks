@@ -1,0 +1,24 @@
+
+First off, a login routine is likely to be used very often throughout testing, so I would recommend abstracting it into a helper class.
+
+<?php
+// loginHelper.php
+    class loginHelper {
+        function login($username, $password, $I) {
+            $I->fillField('login_identity', $username);
+            $I->fillField('login_password', $password);
+        }
+    }
+?>
+
+You would need to include loginHelper as a module to enable in your acceptance.suite.yml and save it in the _helpers/ directory. Now we can freely use the login function in the rest of our acceptance tests.
+
+<?php
+    $I = new WebGuy($scenario);
+    $I->amOnPage('account/sign_in');
+    login('me_vamshi@yahoo.com', 'don', $I);
+    $I->click('submit');
+    $I->see('The Captcha Answer field is required.');
+?>
+
+Now to answer your question, you can prevent the username and password being hardcoded into the tests by saving them in a .yml file in the _data/ directory. Use Yaml::parse(__DIR__ . '/../_data/login.yml'), feeding the contents into an array. I would suggest putting the yaml parser into a helper as well so you may include it globally across all of your tests, meaning you only need to change the username and password in login.yml to change the values used in all of your tests. You can also have multiple usernames and passwords this way, and you will soon realise login details aren't the only values you can store.

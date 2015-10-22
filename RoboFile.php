@@ -20,14 +20,26 @@ class RoboFile extends \Robo\Tasks
         $this->say("Hello, $world");
     }
 	
-	public $AllProjects = [
-		'RSGallery2_Module_ImageWall', 
+	public $AllProjectsFolderNames = [
 		'RSGallery2_Module_LatestGalleries', 
 		'RSGallery2_Module_LatestImages', 
 		'RSGallery2_Module_RandomImages', 
 		'RSGallery2_Module_ThumbScroller', 
 		'RSGallery2_Plugin_DisplayGallery', 
-		'RSGallery2_Plugin_DisplayImage'
+		'RSGallery2_Plugin_DisplayImage',
+		'RSGallery2_Module_ImageWall', 
+		'RSGallery2_Component'
+		];
+	
+	public $AllProjects = [
+		'LatestGalleries', 
+		'LatestImages', 
+		'RandomImages', 
+		'ThumbScroller', 
+		'ImageWall', 
+		'Component',
+		'DisplayGallery', 
+		'DisplayImage'
 		];
 	
 	//       $this->_exec("java -jar $seleniumPath > selenium-errors.log 2>selenium.log &"); 
@@ -44,9 +56,10 @@ class RoboFile extends \Robo\Tasks
 	public function CreateAllProjectZips	()
 	{
         $this->say("CreateAllProjectZips");
-		
-		foreach ($this->AllProjects as $Prj) {
-			$this->DevCreateProjectZip ($Prj);
+
+		// All folder names
+		foreach ($this->AllProjectsFolderNames as $PrjFolderName) {
+			$this->DevCreateProjectZip ($PrjFolderName);
 		}
 	}
 
@@ -70,7 +83,7 @@ class RoboFile extends \Robo\Tasks
 		$this->TaskCheck4ExistingIndexHtmlFile ($Path);	
 	}
 	
-	public function TestCodeceptAvailable ()	
+	function TestCodeceptAvailable ()	
 	{
         $this->say("Check for codecept running");
 
@@ -85,6 +98,45 @@ class RoboFile extends \Robo\Tasks
 			->stopOnFail();		
 	}
 	
+	function CreateProjectBaseView ($Project='DisplayGallery')	
+	{
+        $this->say("Create base view for project ".$Project);
+
+//        $this->say("CODECEPTION RELEASE: ".\Codeception\Codecept::VERSION);
+		$BaseViewName = 'BaseView'.$Project.'Cept.php';
+		$this->taskCodecept()
+			->suite('acceptance')
+			->test($BaseViewName)
+			->arg('--steps')
+			->arg('--debug')
+			->run()
+			->stopOnFail();		
+	}
+	
+	function CreateProjectBackViews ($Project='Component')	
+	{
+        $this->say("Create base view for project ".$Project);
+
+//        $this->say("CODECEPTION RELEASE: ".\Codeception\Codecept::VERSION);
+		$BaseViewName = 'BackViews'.$Project.'Cept.php';		
+		$this->taskCodecept()
+			->suite('acceptance')
+			->test($BaseViewName)
+			->arg('--steps')
+			->arg('--debug')
+			->run()
+			->stopOnFail();		
+	}
+	
+	public function CreateAllProjectBaseViews	()
+	{
+        $this->say("CreateAllProjectBaseViews");
+		
+		foreach ($this->AllProjects as $PrjName) {
+			$this->CreateProjectBaseView ($PrjName);
+		}
+	}
+
 	public function CodeceptInstallProjectWithTmpFolder ()	
 	{
         $this->say("Codecept InstallProjectWithTmpFolder");
@@ -94,8 +146,8 @@ class RoboFile extends \Robo\Tasks
 			->test('InstallProjectWithTmpFolderCept')
 			->arg('--steps')
 			->arg('--debug')
-			->run()
-			->stopOnFail();		
+			->run();
+//			->stopOnFail();		
 	}
 	
 	
@@ -273,5 +325,9 @@ class RoboFile extends \Robo\Tasks
 
 	}
 /**/	
-	
+    // define public methods as commands
+    function hello2($world)
+    {
+        $this->say("Hello, $world");
+    }
 }

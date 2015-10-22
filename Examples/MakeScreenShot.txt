@@ -1,0 +1,18 @@
+The best documentation for this I've found is for the WebDriver module
+In there there's a description of makeScreenshot() which allows you to 
+take a screen shot at any given point of your tests. It appears that it 
+will put all of the screen shots in one directory so better think about 
+a good naming convention.
+Alternatively, we've now got the Recorder extension working which 
+automates the process of taking screen shots at every test step and 
+presents them in a useful report.
+
+``` php
+<?php
+$I->amOnPage('/user/edit');
+$I->makeScreenshot('edit_page');
+// saved to: tests/_output/debug/edit_page.png
+?>
+```
+
+

@@ -1,8 +1,0 @@
-
-
-# leave out selenium web server
-SeleniumServer/
-
-
-
-tests/_output/*

@@ -1,0 +1,31 @@
+
+
+Make sure that your codeception version is at least 1.8, as environment is only supported from 1.8.
+
+Below is our setup for codeception, specified in api.suite.yml, with PhpBrowser and REST modules enabled for BDD and API testings:
+
+...
+env:
+    local:
+        modules:
+            config:
+                PhpBrowser:
+                    url: http://local.example.com/
+                REST:
+                    url: http://local.example.com/v1/
+    integration:
+        modules:
+            config:
+                PhpBrowser:
+                    url: http://integration.example.com/
+                REST:
+                    url: http://integration.example.com/v1/
+    staging:
+        modules:
+            config:
+                PhpBrowser:
+                    url: http://staging.example.com/
+                REST:
+                    url: http://staging.example.com/v1/
+
+When running codecept command, you need to provide an --env option to specify which environment the tests should use.

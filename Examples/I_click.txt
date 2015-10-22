@@ -1,0 +1,18 @@
+$I->seeElement('#directory > fieldset > div > input');
+$I->click('#directory > fieldset > div > input');
+$I->see('was successful');
+
+//$I->click(['id'=>'myButtonID']);
+//$I->click('#facebookLogin input[type="submit"]');
+//$I->click('(//a[contains(text(),"Secure Check Out")])[2]');
+//$I->click('go', '.submit_btn:not(.uppercase)');
+
+//$I->click('#formId > input.submit_btn.uppercase');
+// Try using XPath syntax to access the button. canSee() just looks
+// $I->click("//button[@id='sagepay_submit']");
+//$I->click('//input[@class="submit_btn uppercase"]');
+//$I->click('Save', '#employeeLookup_save');
+//$I->click("//input[@name='save']");
+//$I->see('Create Account', 'a[href="simple/bootstrap"]');
+//$I->seeElement('input[name=submit]');
+//$I->click('input[type=submit]');

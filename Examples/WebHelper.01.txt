@@ -1,0 +1,21 @@
+
+Here is what I wrote in the tests/_helpers/WebHelper.php (note: WebHelper must be enabled in the .yml)
+
+class WebHelper extends \Codeception\Module {
+
+    /**
+     * @param bool $a
+     */
+    function seeTrue( $a ) {
+        $this->assertTrue( $a );
+    }
+}
+
+Then, I ran
+
+php codecept.phar build
+
+And now I can write
+
+$I->seeTrue(true);
+
