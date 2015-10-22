@@ -101,19 +101,26 @@ $I->amOnPage('/administrator/index.php?option=com_rsgallery2&rsgOption=maintenan
 $I->makeScreenshot('Component.Maintenance');
 $I->see('RSGallery2 Maintenance');
 
-
-
-
 //--- Template Manager --------------------------------------------
 
-
+//$I->amOnPage('http://127.0.0.1/Joomla3x/administrator/index.php?option=com_rsgallery2&rsgOption=installer');
+$I->amOnPage('/administrator/index.php?option=com_rsgallery2&rsgOption=installer');
+$I->makeScreenshot('Component.TemplateManager');
+$I->see('RSGallery2 Template Manager');
 
 //--- Config Raw --------------------------------------------
 
+//$I->amOnPage('http://127.0.0.1/Joomla3x/administrator/index.php?option=com_rsgallery2&task=config_rawEdit');
+$I->amOnPage('/administrator/index.php?option=com_rsgallery2&task=config_rawEdit');
+$I->makeScreenshot('Component.ConfigRaw');
+$I->see('Configuration Raw Edit');
 
+//--- Config View --------------------------------------------
 
-//--- Config .... --------------------------------------------
-
+//$I->amOnPage('http://127.0.0.1/Joomla3x/administrator/index.php?option=com_rsgallery2&task=config_dumpVars');
+$I->amOnPage('/administrator/index.php?option=com_rsgallery2&task=config_dumpVars');
+$I->makeScreenshot('Component.ConfigView');
+$I->see('Configuration Variables');
 
 
 

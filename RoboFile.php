@@ -115,10 +115,25 @@ class RoboFile extends \Robo\Tasks
 	
 	function CreateProjectBackViews ($Project='Component')	
 	{
-        $this->say("Create base view for project ".$Project);
+        $this->say("Create back views for project ".$Project);
 
 //        $this->say("CODECEPTION RELEASE: ".\Codeception\Codecept::VERSION);
 		$BaseViewName = 'BackViews'.$Project.'Cept.php';		
+		$this->taskCodecept()
+			->suite('acceptance')
+			->test($BaseViewName)
+			->arg('--steps')
+			->arg('--debug')
+			->run()
+			->stopOnFail();		
+	}
+	
+	function CreateFithRsg2ProjectBackViews ($Project='Component')	
+	{
+        $this->say("Create Fith RSG2 back views for project ".$Project);
+
+//        $this->say("CODECEPTION RELEASE: ".\Codeception\Codecept::VERSION);
+		$BaseViewName = 'BackViewsFithRsg2'.$Project.'Cept.php';		
 		$this->taskCodecept()
 			->suite('acceptance')
 			->test($BaseViewName)
