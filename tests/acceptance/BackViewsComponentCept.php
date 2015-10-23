@@ -1,6 +1,6 @@
 <?php 
 $I = new WebGuy($scenario);
-$I->wantTo('base check component for picture ');
+$I->wantTo('back view main component for picture ');
 
 //--- Component control panel ------------------------------
 

@@ -113,6 +113,7 @@ class RoboFile extends \Robo\Tasks
 			->stopOnFail();		
 	}
 	
+	// Use for back views of component itself
 	function CreateProjectBackViews ($Project='Component')	
 	{
         $this->say("Create back views for project ".$Project);
@@ -127,6 +128,23 @@ class RoboFile extends \Robo\Tasks
 			->run()
 			->stopOnFail();		
 	}
+	
+
+	// does not create component back views . -> see CreateProjectBackViews for component
+	function CreateAllProjectBackViews ()	
+	{
+        $this->say("Create all back views for modules/plugins ");
+
+		$this->taskCodecept()
+			->suite('acceptance')
+			->test('BackViewsAllModulesCept')
+			->arg('--steps')
+			->arg('--debug')
+			->run()
+			->stopOnFail();		
+	}
+	
+	
 	
 	function CreateFithRsg2ProjectBackViews ($Project='Component')	
 	{
@@ -165,6 +183,16 @@ class RoboFile extends \Robo\Tasks
 //			->stopOnFail();		
 	}
 	
+	public function DevInstallAllProjectsWithTmpFolder	($XamppFolderPart)
+	{
+        $this->say("CreateAllProjectZips");
+
+		// All folder names
+		foreach ($this->AllProjectsFolderNames as $PrjFolderName) {
+			$this->DevInstallProjectWithTmpFolder ($PrjFolderName, $XamppFolderPart);
+		}
+	}
+
 	
 	/**
 		Clear tmp folder 
