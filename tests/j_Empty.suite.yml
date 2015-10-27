@@ -2,5 +2,5 @@ class_name: J_EmptyTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://localhost/joomla3xEmpty
+            url: http://localhost/Joomla3xEmpty
         - \Helper\J_Empty
