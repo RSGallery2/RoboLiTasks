@@ -1,5 +1,5 @@
 <?php 
-$I = new acceptanceTester($scenario);
+$I = new J_EmptyTester($scenario);
 $I->wantTo('install component/module/plugin');
 
 // Direct install URL call

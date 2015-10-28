@@ -1,6 +1,14 @@
 
 
+codecept generate:suite j_Empty acceptance
 
+codecept run j_Empty InstallProjectWithTmpFolderCept --steps --debug
+
+codecept generate:cept j_Empty Login
+
+codecept build
+
+codecept run j_Empty InstallProjectWithTmpFolderCept --steps --debug
 
 
 The docs say to run php codecept.phar run to execute my test, but I believe this is an error.

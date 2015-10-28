@@ -1,0 +1,6 @@
+class_name: acceptanceTester
+modules:
+    enabled:
+        - PhpBrowser:
+            url: http://localhost/Joomla3xEmpty
+        - \Helper\acceptance

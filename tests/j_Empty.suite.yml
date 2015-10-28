@@ -1,6 +1,13 @@
-class_name: J_EmptyTester
+class_name: acceptanceTester
 modules:
     enabled:
         - PhpBrowser:
             url: http://localhost/Joomla3xEmpty
-        - \Helper\J_Empty
+#        - \Helper\Acceptance
+    config:
+        PhpBrowser:
+            url: http://localhost/Joomla3xEmpty
+        WebDriver:
+            url: http://localhost/Joomla3xEmpty
+            browser: 'firefox'
+        
