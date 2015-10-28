@@ -4,12 +4,6 @@ First off, a login routine is likely to be used very often throughout testing, s
 <?php
 // loginHelper.php
     class loginHelper {
-        function login($username, $password, $I) {
-            $I->fillField('login_identity', $username);
-            $I->fillField('login_password', $password);
-        }
-    }
-?>
 
 You would need to include loginHelper as a module to enable in your acceptance.suite.yml and save it in the _helpers/ directory. Now we can freely use the login function in the rest of our acceptance tests.
 
