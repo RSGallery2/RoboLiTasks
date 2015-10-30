@@ -1,0 +1,8 @@
+// Running Selenium server
+$this->_exec("java -jar $seleniumPath > selenium.log &");
+$this->taskCodecept()
+        ->suite('acceptance')
+        ->arg('--steps')
+        ->arg('--debug')
+        ->run();
+$this->say(file_get_contents('selenium.log'));

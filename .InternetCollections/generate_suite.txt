@@ -1,0 +1,5 @@
+generate:suite
+
+google codecept "apiguy" "webguy"
+
+http://www.murrion.com/2014/02/start-testing-your-api-with-codeception/

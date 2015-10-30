@@ -1,9 +1,9 @@
-class_name: acceptanceTester
+class_name: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://localhost/Joomla3xEmpty
-#        - \Helper\Acceptance
+#        - WebDriver:
+        - \Helper\Acceptance
     config:
         PhpBrowser:
             url: http://localhost/Joomla3xEmpty
