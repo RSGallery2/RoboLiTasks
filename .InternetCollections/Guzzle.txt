@@ -1,0 +1,8 @@
+guzzlehttp/guzzle
+
+composer ->
+"require": {
+	"guzzlehttp/guzzle": "4.*"
+}
+
+

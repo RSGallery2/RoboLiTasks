@@ -7,7 +7,7 @@
 use Robo\Common\TaskIO;
 use Symfony\Component\Finder\Finder;
   
-require_once 'vendor/autoload.php';
+require_once './vendor/autoload.php';
   
 class RoboFile extends \Robo\Tasks
 //class RoboFile extends \Robo\Task\BaseTask

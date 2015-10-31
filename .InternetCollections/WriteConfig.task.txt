@@ -1,0 +1,23 @@
+
+
+@description create a config ...
+
+
+p func config.File
+$database = this-ask ('') 
+th->taskexec rm - rf config.php -run
+this taskwritetofile 'config.php')
+->line('<?php')
+->Line('return array ("database"==>"' $database '")
+->run ();
+$this->say('<info><Erfolg/info>');
+}
+
+
+
+
+
+
+
+
+
