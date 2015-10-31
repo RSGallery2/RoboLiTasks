@@ -44,7 +44,11 @@ class RoboFile extends \Robo\Tasks
 	
 	//       $this->_exec("java -jar $seleniumPath > selenium-errors.log 2>selenium.log &"); 
 	public $cmdSelenium = 'java -jar ..\SeleniumServer\selenium-server-standalone-2.48.1.jar > selenium-errors.log 2&>';
-		
+	
+    /**
+     * 
+     * @description Launch selenium web server
+     */ 	
 	public function LaunchSelenium ()
 	{
 		// launches Selenium server
@@ -53,6 +57,10 @@ class RoboFile extends \Robo\Tasks
 			->run();
 	}	
 		
+    /**
+     * 
+     * @description 
+     */ 	
 	public function CreateAllProjectZips	()
 	{
         $this->say("CreateAllProjectZips");
@@ -64,7 +72,8 @@ class RoboFile extends \Robo\Tasks
 	}
 
 	/**	
-		Creates zip file of project
+     * 
+     * @description Creates zip file of project
 	*/
 	public function DevCreateProjectZip ($prjName)	
 	{
@@ -83,6 +92,10 @@ class RoboFile extends \Robo\Tasks
 		$this->TaskCheck4ExistingIndexHtmlFile ($Path);	
 	}
 	
+    /**
+     * 
+     * @description 
+     */ 	
 	function TestCodeceptAvailable ()	
 	{
         $this->say("Check for codecept running");
@@ -98,6 +111,10 @@ class RoboFile extends \Robo\Tasks
 			->stopOnFail();		
 	}
 	
+    /**
+     * 
+     * @description 
+     */ 	
 	function CreateProjectBaseView ($Project='DisplayGallery')	
 	{
         $this->say("Create base view for project ".$Project);
@@ -113,7 +130,10 @@ class RoboFile extends \Robo\Tasks
 			->stopOnFail();		
 	}
 	
-	// Use for back views of component itself
+    /**
+     * 
+     * @description Use for back views of component itself
+     */ 	
 	function CreateProjectBackViews ($Project='Component')	
 	{
         $this->say("Create back views for project ".$Project);
@@ -130,7 +150,10 @@ class RoboFile extends \Robo\Tasks
 	}
 	
 
-	// does not create component back views . -> see CreateProjectBackViews for component
+    /**
+     * 
+     * @description does not create component back views . -> see CreateProjectBackViews for component
+     */ 	
 	function CreateAllProjectBackViews ()	
 	{
         $this->say("Create all back views for modules/plugins ");
@@ -146,6 +169,10 @@ class RoboFile extends \Robo\Tasks
 	
 	
 	
+    /**
+     * 
+     * @description 
+     */ 	
 	function CreateFithRsg2ProjectBackViews ($Project='Component')	
 	{
         $this->say("Create Fith RSG2 back views for project ".$Project);
@@ -161,6 +188,10 @@ class RoboFile extends \Robo\Tasks
 			->stopOnFail();		
 	}
 	
+    /**
+     * 
+     * @description 
+     */ 	
 	public function CreateAllProjectBaseViews	()
 	{
         $this->say("CreateAllProjectBaseViews");
@@ -170,6 +201,10 @@ class RoboFile extends \Robo\Tasks
 		}
 	}
 
+    /**
+     * 
+     * @description 
+     */ 	
 	public function CodeceptInstallProjectWithTmpFolder ()	
 	{
         $this->say("Codecept InstallProjectWithTmpFolder");
@@ -183,6 +218,10 @@ class RoboFile extends \Robo\Tasks
 //			->stopOnFail();		
 	}
 	
+    /**
+     * 
+     * @description 
+     */ 	
 	public function DevInstallAllProjectsWithTmpFolder	($XamppFolderPart)
 	{
         $this->say("CreateAllProjectZips");
@@ -194,9 +233,10 @@ class RoboFile extends \Robo\Tasks
 	}
 
 	
-	/**
-		Clear tmp folder 
-	*/
+    /**
+     * 
+     * @description  
+     */ 	
 	public function DevInstallProjectWithTmpFolder ($prjName, $XamppFolderPart)	
 	{
         $this->say("DevInstallProjectOverTempZip not finished");
@@ -237,9 +277,10 @@ class RoboFile extends \Robo\Tasks
 		$this->CodeceptInstallProjectWithTmpFolder ();
 	}
 	
-	/**	
-		Creates zip file of project
-	*/
+    /**
+     * 
+     * @description 
+     */ 	
 	public function DevClearTempInstallFolder ($XamppFolderPart)	
 	{
 		$DstPath = '\\xampp\\htdocs\\' .  $XamppFolderPart . '\\tmp';	
@@ -261,9 +302,10 @@ class RoboFile extends \Robo\Tasks
 	}
 	
 	
-	/**	
-		Creates zip file of project
-	*/
+    /**
+     * 
+     * @description 
+     */ 	
 	public function DevProjectGenerateMarkdownDoc ($prjName)	
 	{
         $this->say("DevProjectGenerateMarkdownDoc not finished");
@@ -281,9 +323,10 @@ class RoboFile extends \Robo\Tasks
 		$this->taskGenerateMarkdownDoc($prjName . 'Doc.md');
 	}
 	
-	/**
-		Try doc
-	*/
+    /**
+     * 
+     * @description Try doc
+     */ 	
 	public function docComponent ($CompName='RSGallery2_Module_LatestImages')
 	{
         $files = Finder::create()->files()->name('*.php')->in('../'.$CompName);
@@ -298,13 +341,8 @@ class RoboFile extends \Robo\Tasks
 	}
 	
 	
-	
-	
-	
-	
-	
 	/**
-	* Creates index.html files inn folders where they are not existing
+	* @description Creates index.html files in folders where they are not existing
 	* Will recursively check every sub folder
 	* command line: check4:existing-index-html-file
 	* @param string $path start folder path	
@@ -325,7 +363,6 @@ class RoboFile extends \Robo\Tasks
 			$this->say("!!! Path: '$path' is not existing");
 			return;
 		}
-
 		
 //        $this->say("Your RoboFile.php version is $this->clientVersion, the latest version is $this->version");
 		
@@ -368,7 +405,12 @@ class RoboFile extends \Robo\Tasks
 
 	}
 /**/	
-    // define public methods as commands
+
+
+    /**
+     * 
+     * @description 
+     */ 	
     function hello2($world)
     {
         $this->say("Hello, $world");
