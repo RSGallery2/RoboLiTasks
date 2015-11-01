@@ -1,0 +1,8 @@
+# `j_EmptyEnv` environment config goes here
+# different URL 
+modules:
+    config:
+        PhpBrowser:
+            url: http://localhost/Joomla3xEmpty
+        WebDriver:
+            url: http://localhost/Joomla3xEmpty
