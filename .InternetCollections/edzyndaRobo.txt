@@ -1,0 +1,64 @@
+
+Continuous Integration With Jenkins Part II
+
+
+
+<?php
+class RoboFile extends \Robo\Tasks
+{
+    // Run ALL the tasks
+    public function build()
+    {
+        $this->setup();
+        $this->test();
+        $this->lint();
+        $this->codesniffer();
+    }
+
+    // Setup
+    private function setup()
+    {
+        if (! is_dir('reports')) {
+            $this->taskFilesystemStack()
+                ->mkdir('reports')
+                ->run();
+        }
+
+        $this->_cleanDir('reports');
+    }
+
+    // Run PHPSpec tests
+    public function test()
+    {
+        $this->taskPhpspec()
+            ->format('html')
+            ->arg('> reports/phpspec.html')
+            ->run();
+    }
+
+    // Check for syntax errors
+    public function lint()
+    {
+        $this->taskExec('php')
+            ->arg('-l')
+            ->arg('spec/*/*')
+            ->run();
+
+        $this->taskExec('php')
+            ->arg('-l')
+            ->arg('src/*')
+            ->run();
+    }
+
+    // Check coding style
+    public function codesniffer()
+    {
+        $this->taskExec('vendor/bin/phpcs')
+            ->arg('--report=checkstyle')
+            ->arg('--report-file=reports/checkstyle.xml')
+            ->arg('--standard=PSR2')
+            ->arg('--extensions=php')
+            ->arg('src')
+            ->run();
+    }
+}
