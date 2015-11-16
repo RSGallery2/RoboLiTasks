@@ -271,6 +271,35 @@ class RoboFile extends \Robo\Tasks
 		$this->_cleanDir($DstPath);	
 		
         $this->say("\t\* Copy to destination  " . $PrjPath);
+		
+$path = 'extracted/' . $name[0];
+$results = scandir($path);
+
+foreach ($results as $result) {
+    if ($result === '.' or $result === '..') continue;
+
+    if (is_dir($path . '/' . $result)) {
+        //code to use if directory
+    }
+}
+
+		foreach (new DirectoryIterator($PrjPath) as $fileInfo) {
+			if($fileInfo->isDot()) {
+				continue;
+			}
+
+			if (is_dir($path . '/' . $result)) {
+					//code to use if directory
+				}
+
+			$file =  $path.$fileInfo->getFilename();
+			
+			
+		}		
+				
+		
+		
+		
 		$this->_copyDir($PrjPath, $DstPath);	
 
         $this->say("\t\* Install with codeception  " . $prjName);
