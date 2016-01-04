@@ -272,16 +272,18 @@ class RoboFile extends \Robo\Tasks
 		
         $this->say("\t\* Copy to destination  " . $PrjPath);
 		
-$path = 'extracted/' . $name[0];
-$results = scandir($path);
+		$path = 'extracted/' . $name[0];
+		$results = scandir($path);
 
-foreach ($results as $result) {
-    if ($result === '.' or $result === '..') continue;
+		foreach ($results as $result) {
+			if ($result === '.' or $result === '..'){ 
+				continue;
+			}
 
-    if (is_dir($path . '/' . $result)) {
-        //code to use if directory
-    }
-}
+			if (is_dir($path . '/' . $result)) {
+				//code to use if directory
+			}
+		}
 
 		foreach (new DirectoryIterator($PrjPath) as $fileInfo) {
 			if($fileInfo->isDot()) {
