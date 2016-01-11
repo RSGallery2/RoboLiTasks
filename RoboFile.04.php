@@ -305,7 +305,7 @@ class RoboFile extends \Robo\Tasks
 		$this->_copyDir($PrjPath, $DstPath);	
 
         $this->say("\t\* Install with codeception  " . $prjName);
-//		$this->CodeceptInstallProjectWithTmpFolder ();
+		$this->CodeceptInstallProjectWithTmpFolder ();
 	}
 	
     /**
