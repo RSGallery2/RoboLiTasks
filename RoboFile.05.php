@@ -67,17 +67,18 @@ class RoboFile extends \Robo\Tasks
 
 		// All folder names
 		foreach ($this->AllProjectsFolderNames as $PrjFolderName) {
-			$this->DevBuildProjectZip ($PrjFolderName);
-		} 
+			$this->DevCreateProjectZip ($PrjFolderName);
+		}
 	}
 
 	/**	
      * 
-     * @description Analyses the project and if all
-	 * is OK creates a zip file of project
+     * @description Creates zip file of project
 	*/
-	public function DevBuildProjectZip ($prjName, $dstPath)	
+	public function DevCreateProjectZip ($prjName)	
 	{
+        $this->say("DevCreateProjectZip not finished");
+		
 		$PrjPath ='..\\' . $prjName;
 		
 		// Does source exist ?
@@ -88,28 +89,7 @@ class RoboFile extends \Robo\Tasks
 			return Robo\Result::error($this, $ErrorOut);
 		}
 		
-		// $this->TaskCheck4ExistingIndexHtmlFile ($Path);	
-		
-
-		//--- copy project relevant files to temp directory 
-		
-		// Clear destination temp file
-		$prjTempPath = $dstPath + '/.installTmp';
-		if ( yyyy path exist
-		$this->CopyProjectInstallFiles ( );
-		
-		
-		$this->DevCreateProjectZip ();
-	}
-	
-	/**	
-     * 
-     * @description Creates zip file of project
-	*/
-	public function DevCreateProjectZip ($PrjPath)	
-	{
-        $this->say("DevCreateProjectZip not finished");
-		
+		$this->TaskCheck4ExistingIndexHtmlFile ($Path);	
 	}
 	
     /**
