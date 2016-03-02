@@ -1,0 +1,28 @@
+Furtzhe looking
+http://php.net/manual/en/language.oop5.autoload.php  
+http://stackoverflow.com/questions/791899/efficient-php-auto-loading-and-naming-strategies 
+ 
+
+Stackoverflow:
+
+You can use include/include_once or require/require_once
+require_once('class.php');
+
+
+Alternatively, use autoloading by adding to page.php
+<?php 
+function __autoload($class_name) {
+  require_once $class_name . '.php';
+}
+
+$vars = new IUarts(); 
+print($vars->data);    
+?>
+
+It also works adding that __autoload function in a lib that you include on every file like utils.php.
+
+There is also this post that has a nice and different approach.
+
+Efficient PHP auto-loading and naming strategies
+ 
+ 
