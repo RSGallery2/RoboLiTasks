@@ -94,6 +94,11 @@ class RoboFile extends \Robo\Tasks
             echo 'LoadProject Exception found: ',  $e->getMessage(), "\n";
         }
 
+        // Message on fail
+        if (empty ($Jprj)) {
+            echo 'Project could not be created \n';
+        }
+
         return $Jprj;
     }
 
@@ -104,14 +109,37 @@ class RoboFile extends \Robo\Tasks
      */
     public function DevBuildProject2Zip ($prjName, $dstPath)
     {
-        $Jprj = LoadProject ($prjName);
+
+        //
+        yyy DevBuildProject2Folder ($prjName, $dstPath)
+        $Jprj = DevBuildProject2Folder ($prjName);
         // project could not be created
         if (empty ($Jprj)) {
             return;
         }
 
 
+
+        $Jprj = LoadProject ($prjName);
+        // project could not be created
+        if (empty ($Jprj)) {
+            return;
+        }
+
+        //--- file list ---------------------------------
         $installFiles = $Jprj->collectInstallFiles();
+        // Message on fail
+        if (empty ($installFiles)) {
+            echo 'Install files not found\n';
+            return;
+        }
+
+        //--- copy files ---------------------------------
+               .....
+
+
+        //--- zip files ---------------------------------
+
     }
 
         /**
@@ -119,26 +147,30 @@ class RoboFile extends \Robo\Tasks
      * @description Analyzes the project and if all
      * is OK creates a zip file of project
      */
-	public function DevBuildProject2Zip ($prjName, $dstPath)
+	public function DevBuildProject2Folder ($prjName, $dstPath)
 	{
-		$PrjPath ='..\\' . $prjName;
-		
-		// Does source exist ?
-		if (! is_dir($PrjPath)) {
-			$ErrorOut = "!!! \$PrjPath= '" . $PrjPath . "' is not existing ";
-			$this->say($ErrorOut);
-			
-			return Robo\Result::error($this, $ErrorOut);
-		}
+        $Jprj = LoadProject ($prjName);
+        // project could not be created
+        if (empty ($Jprj)) {
+            return;
+        }
 
-        $Jprj = new JDevProject ($PrjPath);
+        //--- file list ---------------------------------
+        $installFiles = $Jprj->collectInstallFiles();
+        // Message on fail
+        if (empty ($installFiles)) {
+            echo 'Install files not found\n';
+            return;
+        }
 
-        $installFiles = $Jprj.collectInstallFiles ();
+        //--- copy files ---------------------------------
+        .....
 
-		// $this->TaskCheck4ExistingIndexHtmlFile ($Path);	
-		
 
-		//--- copy project relevant files to temp directory 
+        //--- zip files ---------------------------------
+
+
+        //--- copy project relevant files to temp directory
 		
 		// Clear destination temp file
 		$prjTempPath = $dstPath + '/.installTmp';
