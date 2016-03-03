@@ -1,4 +1,5 @@
 <?php
+
 /**
  * JDevProject (JDeveloperProject)
  * Contains all information of a component, modul or plugin
@@ -48,18 +49,24 @@ public class JDevProject {
 
     public function CollectInstallFiles ()
     {
-        $errFound = '';
+        $installFiles = array ();
 
-        if ($this->prjPath=='') {
-            $errFound = 'No project path given or path is invalid';
-            return;
+        try {
+            $errFound = '';
+
+            if ($this->prjPath == '') {
+                $errFound = 'No project path given or path is invalid';
+                return;
+            }
+
+
+        }
+        catch (Exception $e) {
+            echo 'CollectInstallFiles Exception found: ',  $e->getMessage(), "\n";
         }
 
 
-
-
-
-
+        return $installFiles;
     }
 
 

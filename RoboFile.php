@@ -6,9 +6,12 @@
  */
 use Robo\Common\TaskIO;
 use Symfony\Component\Finder\Finder;
-  
+
 require_once './vendor/autoload.php';
-  
+require_once './JDevProject.php';
+
+
+
 class RoboFile extends \Robo\Tasks
 //class RoboFile extends \Robo\Task\BaseTask
 {
@@ -71,12 +74,52 @@ class RoboFile extends \Robo\Tasks
 		} 
 	}
 
-	/**	
-     * 
-     * @description Analyses the project and if all
-	 * is OK creates a zip file of project
-	*/
-	public function DevBuildProjectZip ($prjName, $dstPath)	
+
+    public function LoadProject ($prjName)
+    {
+        $Jprj = new JDevProject (''); // fall back
+
+        try {
+            $PrjPath = '..\\' . $prjName;
+
+            // Does source exist ?
+            if (!is_dir($PrjPath)) {
+                $ErrorOut = "!!! \$PrjPath= '" . $PrjPath . "' is not existing ";
+                $this->say($ErrorOut);
+
+                return Robo\Result::error($this, $ErrorOut);
+            }
+        }
+        catch (Exception $e) {
+            echo 'LoadProject Exception found: ',  $e->getMessage(), "\n";
+        }
+
+        return $Jprj;
+    }
+
+    /**
+     *
+     * @description Analyzes the project and if all
+     * is OK creates a zip file of project
+     */
+    public function DevBuildProject2Zip ($prjName, $dstPath)
+    {
+        $Jprj = LoadProject ($prjName);
+        // project could not be created
+        if (empty ($Jprj)) {
+            return;
+        }
+
+
+        $installFiles = $Jprj->collectInstallFiles();
+    }
+
+        /**
+     *
+     * @description Analyzes the project and if all
+     * is OK creates a zip file of project
+     */
+	public function DevBuildProject2Zip ($prjName, $dstPath)
 	{
 		$PrjPath ='..\\' . $prjName;
 		
@@ -87,7 +130,11 @@ class RoboFile extends \Robo\Tasks
 			
 			return Robo\Result::error($this, $ErrorOut);
 		}
-		
+
+        $Jprj = new JDevProject ($PrjPath);
+
+        $installFiles = $Jprj.collectInstallFiles ();
+
 		// $this->TaskCheck4ExistingIndexHtmlFile ($Path);	
 		
 
