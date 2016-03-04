@@ -49,21 +49,25 @@ class JDevProject {
     }
 
 
-    private function listdiraux($dir, &$files) {
+    private function listDirPrjFiles ($dir, &$files) {
         $handle = opendir($dir);
+
         while (($file = readdir($handle)) !== false) {
-            if ($file == '.' || $file == '..') {
+            // if ($file == '.' || $file == '..') {
+            if($file[0] === '.') {
                 continue;
             }
+
             $filepath = $dir == '.' ? $file : $dir . '/' . $file;
             if (is_link($filepath))
                 continue;
             if (is_file($filepath))
                 $files[] = $filepath;
             else if (is_dir($filepath))
-                $this->listdiraux($filepath, $files);
+                $this->listDirPrjFiles($filepath, $files);
         }
-        closedir($handle);
+
+        closedir ($handle);
     }
 
 
@@ -72,6 +76,8 @@ class JDevProject {
     public function CollectInstallFiles ()
     {
         $installFiles = array ();
+
+        $HomePath = getcwd ();
 
         try {
             $errFound = '';
@@ -85,43 +91,19 @@ class JDevProject {
                 return $installFiles;
             }
 
-            $files = array();
-            $this->listdiraux($this->prjPath, $files);
+            chdir($this->prjPath);
+            $this->listDirPrjFiles('.', $installFiles);
+            // sort($installFiles, SORT_LOCALE_STRING);
 
-            sort($files, SORT_LOCALE_STRING);
-
-            foreach ($files as $f) {
+            foreach ($installFiles as $f) {
                 echo  $f, "\n";
             }
-
-
-
-
-            /*
-                        if ($handle = opendir($this->prjPath)) {
-                            echo "Verzeichnis-Handle: $handle\n";
-                            echo "Einträge:\n";
-
-                            //* Das ist der korrekte Weg, ein Verzeichnis zu durchlaufen. *
-                            while (false !== ($entry = readdir($handle))) {
-
-                                if ($entry != "." && $entry != "..") {
-                                    echo "$entry\n";
-
-
-
-                                echo "$entry\n";
-                            }
-
-                            closedir($handle);
-                        }
-            */
-
         }
         catch (Exception $e) {
             echo 'CollectInstallFiles Exception found: ',  $e->getMessage(), "\n";
         }
 
+        chdir($HomePath);
 
         return $installFiles;
     }

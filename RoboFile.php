@@ -114,7 +114,7 @@ class RoboFile extends \Robo\Tasks
      */
     public function DevBuildProject2Folder ($prjName, $dstPath)
     {
-        echo 'DevBuildProject2Folder::$$prjName. "' . $$prjName . '"' . "\n";
+        echo 'DevBuildProject2Folder::$$prjName. "' . $prjName . '"' . "\n";
 
         $Jprj = $this->LoadProject ($prjName);
         // project could not be created
