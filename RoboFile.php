@@ -80,15 +80,20 @@ class RoboFile extends \Robo\Tasks
         $Jprj = new JDevProject (''); // fall back
 
         try {
-            $PrjPath = '..\\' . $prjName;
+            $prjPath = '..\\' . $prjName;
+
+            echo 'LoadProject::$prjPath. "' . $prjPath . '"' . "\n";
 
             // Does source exist ?
-            if (!is_dir($PrjPath)) {
-                $ErrorOut = "!!! \$PrjPath= '" . $PrjPath . "' is not existing ";
+            if (!is_dir($prjPath)) {
+                $ErrorOut = "!!! \$PrjPath= '" . $prjPath . "' is not existing ";
                 $this->say($ErrorOut);
 
                 return Robo\Result::error($this, $ErrorOut);
             }
+
+            // Create project info
+            $Jprj = new JDevProject ($prjPath);
         }
         catch (Exception $e) {
             echo 'LoadProject Exception found: ',  $e->getMessage(), "\n";
@@ -107,18 +112,59 @@ class RoboFile extends \Robo\Tasks
      * @description Analyzes the project and if all
      * is OK creates a zip file of project
      */
+    public function DevBuildProject2Folder ($prjName, $dstPath)
+    {
+        echo 'DevBuildProject2Folder::$$prjName. "' . $$prjName . '"' . "\n";
+
+        $Jprj = $this->LoadProject ($prjName);
+        // project could not be created
+        if (empty ($Jprj)) {
+            echo 'Project not defined \n';
+            return;
+        }
+
+        //--- file list ---------------------------------
+        $installFiles = $Jprj->collectInstallFiles();
+        // Message on fail
+        if (empty ($installFiles)) {
+            echo 'Install files not found\n';
+            return;
+        }
+
+        //--- copy files ---------------------------------
+
+/*
+        //--- zip files ---------------------------------
+
+
+        //--- copy project relevant files to temp directory
+        // Clear destination temp file
+        $prjTempPath = $dstPath + '/.installTmp';
+        if ( yyyy path exist
+		$this->CopyProjectInstallFiles ( );
+
+
+		$this->DevCreateProjectZip ();
+*/
+        return $Jprj;
+	}
+
+    /**
+     *
+     * @description Analyzes the project and if all
+     * is OK creates a zip file of project
+     */
     public function DevBuildProject2Zip ($prjName, $dstPath)
     {
 
-        //
-        yyy DevBuildProject2Folder ($prjName, $dstPath)
-        $Jprj = DevBuildProject2Folder ($prjName);
+        // DevBuildProject2Folder ($prjName, $dstPath);
+        $Jprj = DevBuildProject2Folder ($prjName, $dstPath . '\Tmp');
         // project could not be created
         if (empty ($Jprj)) {
             return;
         }
 
-
+/*
 
         $Jprj = LoadProject ($prjName);
         // project could not be created
@@ -139,49 +185,10 @@ class RoboFile extends \Robo\Tasks
 
 
         //--- zip files ---------------------------------
-
+*/
     }
 
-        /**
-     *
-     * @description Analyzes the project and if all
-     * is OK creates a zip file of project
-     */
-	public function DevBuildProject2Folder ($prjName, $dstPath)
-	{
-        $Jprj = LoadProject ($prjName);
-        // project could not be created
-        if (empty ($Jprj)) {
-            return;
-        }
-
-        //--- file list ---------------------------------
-        $installFiles = $Jprj->collectInstallFiles();
-        // Message on fail
-        if (empty ($installFiles)) {
-            echo 'Install files not found\n';
-            return;
-        }
-
-        //--- copy files ---------------------------------
-        .....
-
-
-        //--- zip files ---------------------------------
-
-
-        //--- copy project relevant files to temp directory
-		
-		// Clear destination temp file
-		$prjTempPath = $dstPath + '/.installTmp';
-		if ( yyyy path exist
-		$this->CopyProjectInstallFiles ( );
-		
-		
-		$this->DevCreateProjectZip ();
-	}
-	
-	/**	
+	/**
      * 
      * @description Creates zip file of project
 	*/

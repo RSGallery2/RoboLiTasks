@@ -7,7 +7,7 @@
  * The initialiasion shall be done from the sources itself
  *   Therefore a path must be given
  */
-public class JDevProject {
+class JDevProject {
     /**
      * @var string
      */
@@ -21,7 +21,9 @@ public class JDevProject {
     public function __construct($prjPath='') {
         $this->prjPath = $prjPath;
 
-        InitFromPrjPath (); // uses $this->prjPath
+        echo '__construct::$this->prjPath. "' . $this->prjPath . '"' . "\n";
+
+        $this->InitFromPrjPath (); // uses $this->prjPath
     }
 
     /**
@@ -46,7 +48,8 @@ public class JDevProject {
 
     }
 
-
+// http://php.net/manual/de/function.readdir.php
+// google: php collect file from folder
     public function CollectInstallFiles ()
     {
         $installFiles = array ();
@@ -54,9 +57,31 @@ public class JDevProject {
         try {
             $errFound = '';
 
+            echo 'CollectInstallFiles' . "\n";
+
+            echo '$this->prjPath. "' . $this->prjPath . '"' . "\n";
+
             if ($this->prjPath == '') {
                 $errFound = 'No project path given or path is invalid';
                 return;
+            }
+
+            if ($handle = opendir($this->prjPath)) {
+                echo "Verzeichnis-Handle: $handle\n";
+                echo "Einträge:\n";
+
+                /* Das ist der korrekte Weg, ein Verzeichnis zu durchlaufen. */
+                while (false !== ($entry = readdir($handle))) {
+
+                    if ($entry != "." && $entry != "..") {
+                        echo "$entry\n";
+
+
+
+                    echo "$entry\n";
+                }
+
+                closedir($handle);
             }
 
 
