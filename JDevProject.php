@@ -48,6 +48,25 @@ class JDevProject {
 
     }
 
+
+    private function listdiraux($dir, &$files) {
+        $handle = opendir($dir);
+        while (($file = readdir($handle)) !== false) {
+            if ($file == '.' || $file == '..') {
+                continue;
+            }
+            $filepath = $dir == '.' ? $file : $dir . '/' . $file;
+            if (is_link($filepath))
+                continue;
+            if (is_file($filepath))
+                $files[] = $filepath;
+            else if (is_dir($filepath))
+                $this->listdiraux($filepath, $files);
+        }
+        closedir($handle);
+    }
+
+
 // http://php.net/manual/de/function.readdir.php
 // google: php collect file from folder
     public function CollectInstallFiles ()
@@ -61,29 +80,42 @@ class JDevProject {
 
             echo '$this->prjPath. "' . $this->prjPath . '"' . "\n";
 
-            if ($this->prjPath == '') {
+            if (!is_dir($this->prjPath)) {
                 $errFound = 'No project path given or path is invalid';
-                return;
+                return $installFiles;
             }
 
-            if ($handle = opendir($this->prjPath)) {
-                echo "Verzeichnis-Handle: $handle\n";
-                echo "Einträge:\n";
+            $files = array();
+            $this->listdiraux($this->prjPath, $files);
 
-                /* Das ist der korrekte Weg, ein Verzeichnis zu durchlaufen. */
-                while (false !== ($entry = readdir($handle))) {
+            sort($files, SORT_LOCALE_STRING);
 
-                    if ($entry != "." && $entry != "..") {
-                        echo "$entry\n";
-
-
-
-                    echo "$entry\n";
-                }
-
-                closedir($handle);
+            foreach ($files as $f) {
+                echo  $f, "\n";
             }
 
+
+
+
+            /*
+                        if ($handle = opendir($this->prjPath)) {
+                            echo "Verzeichnis-Handle: $handle\n";
+                            echo "Einträge:\n";
+
+                            //* Das ist der korrekte Weg, ein Verzeichnis zu durchlaufen. *
+                            while (false !== ($entry = readdir($handle))) {
+
+                                if ($entry != "." && $entry != "..") {
+                                    echo "$entry\n";
+
+
+
+                                echo "$entry\n";
+                            }
+
+                            closedir($handle);
+                        }
+            */
 
         }
         catch (Exception $e) {
