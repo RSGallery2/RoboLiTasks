@@ -94,10 +94,11 @@ class JDevProject {
             chdir($this->prjPath);
             $this->listDirPrjFiles('.', $installFiles);
             // sort($installFiles, SORT_LOCALE_STRING);
-
+/*
             foreach ($installFiles as $f) {
                 echo  $f, "\n";
             }
+*/
         }
         catch (Exception $e) {
             echo 'CollectInstallFiles Exception found: ',  $e->getMessage(), "\n";
