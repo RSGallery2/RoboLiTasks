@@ -42,10 +42,6 @@ class JDevProject {
 
         //--- Read manifest file ------------------------------------
 
-
-
-
-
     }
 
 
